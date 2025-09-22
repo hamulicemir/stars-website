@@ -4,6 +4,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
 type Slide = {
   src: string;
   alt?: string;
@@ -19,8 +20,8 @@ export default function Carousel({ slides, className }: Props) {
   const slideCount = slides.length;
 
   const clamp = (n: number) => (n + slideCount) % slideCount;
-  const prev = () => setIndex(i => clamp(i - 1));
-  const next = () => setIndex(i => clamp(i + 1));
+  const prev = () => setIndex((i) => clamp(i - 1));
+  const next = () => setIndex((i) => clamp(i + 1));
   const goTo = (i: number) => setIndex(clamp(i));
 
   // Keyboard (←/→)
@@ -57,7 +58,10 @@ export default function Carousel({ slides, className }: Props) {
 
   return (
     <div
-      className={"relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] border border-slate-200 shadow-md"}
+      className={
+        "relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] border border-slate-200 shadow-md " +
+        (className ?? "")
+      }
       onMouseDown={(e) => onStart(e.clientX)}
       onMouseMove={(e) => onMove(e.clientX)}
       onMouseUp={onEnd}
@@ -84,23 +88,23 @@ export default function Carousel({ slides, className }: Props) {
         ))}
       </div>
 
-      {/* Deko-Ring (wie in Hero) */}
+      {/* Deko-Ring */}
       <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-black/5" />
 
       {/* Controls */}
       <button
         aria-label="Vorheriges Bild"
         onClick={prev}
-        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 backdrop-blur transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-1.5 sm:p-2 backdrop-blur transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
       >
-        <ChevronLeft size={22} />
+        <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
       </button>
       <button
         aria-label="Nächstes Bild"
         onClick={next}
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 backdrop-blur transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-1.5 sm:p-2 backdrop-blur transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
       >
-        <ChevronRight size={22} />
+        <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
       </button>
 
       {/* Dots */}
@@ -112,7 +116,12 @@ export default function Carousel({ slides, className }: Props) {
               key={i}
               aria-label={`Gehe zu Bild ${i + 1}`}
               onClick={() => goTo(i)}
-              className={"h-2.5 w-2.5 rounded-full transition " + (active ? "bg-slate-900" : "bg-white/70 ring-1 ring-slate-300 hover:bg-white")}
+              className={
+                "h-2.5 w-2.5 rounded-full transition " +
+                (active
+                  ? "bg-slate-900"
+                  : "bg-white/70 ring-1 ring-slate-300 hover:bg-white")
+              }
             />
           );
         })}

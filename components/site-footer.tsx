@@ -18,7 +18,7 @@ export function SiteFooter() {
           {/* Socials */}
           <div className="mt-4 flex gap-6 text-slate-600">
             <a
-              href="https://facebook.com/DEIN_LINK"
+              href="https://www.facebook.com/STARS.Sportverein"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-600"
@@ -26,7 +26,7 @@ export function SiteFooter() {
               <FaFacebookF className="h-8 w-8" />
             </a>
             <a
-              href="https://x.com/DEIN_LINK"
+              href="https://x.com/Starswien"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-black"
@@ -34,7 +34,7 @@ export function SiteFooter() {
               <FaTwitter className="h-8 w-8" />
             </a>
             <a
-              href="https://instagram.com/DEIN_LINK"
+              href="https://www.instagram.com/starsbasketballwien/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-pink-600"
@@ -42,7 +42,7 @@ export function SiteFooter() {
               <FaInstagram className="h-8 w-8" />
             </a>
             <a
-              href="https://youtube.com/DEIN_LINK"
+              href="https://www.youtube.com/channel/UCffVpf3YQzD6jLwIXw0MkYw"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-red-600"
@@ -63,17 +63,17 @@ export function SiteFooter() {
         <div>
           <h4 className="text-sm font-semibold">Kontakt</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
-            <li className="flex items-center gap-2"><Mail size={16} /> office@stars-basketball.com</li>
-            <li className="flex items-center gap-2"><Phone size={16} /> +43 676 674 41 95</li>
-            <li className="flex items-center gap-2"><Phone size={16} /> +43 650 600 72 85</li>
+            <li className="flex items-center gap-2"><Mail size={16} /> <a href="mailto:office@stars-basketball.com">office@stars-basketball.com</a></li>
+            <li className="flex items-center gap-2"><Phone size={16} /> <a href="tel:+436766744195">+43 676 674 41 95</a></li>
+            <li className="flex items-center gap-2"><Phone size={16} /> <a href="tel:+436506007285">+43 650 600 72 85</a></li>
             <li className="flex items-center gap-2"><MapPin size={16} /> Bernoullistraße 8, 1220 Wien</li>
           </ul>
         </div>
         <div>
           <h4 className="text-sm font-semibold">Rechtliches</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
-            <li><a href="#" className="hover:underline">Impressum</a></li>
-            <li><a href="#" className="hover:underline">Datenschutz</a></li>
+            <li><a href="/impressum" className="hover:underline">Impressum</a></li>
+            <li><a href="/datenschutz" className="hover:underline">Datenschutz</a></li>
           </ul>
         </div>
       </Container>

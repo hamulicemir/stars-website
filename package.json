@@ -8,10 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "framer-motion": "^12.23.18",
+    "import": "^0.0.6",
     "lucide-react": "latest",
-    "next": "14.2.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^15.5.3",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
     "utils": "^0.3.1"
   },

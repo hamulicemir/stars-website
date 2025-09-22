@@ -1,5 +1,7 @@
 import React from "react";
-import { CalendarDays, Newspaper, Images, Users, Award, Play, ChevronRight } from "lucide-react";
+import { CalendarDays, Newspaper, Images, Users, Award, Play, ChevronRight, ArrowRight, Trophy, HeartHandshake } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Container } from "./ui/container";
 import { Button } from "./ui/button";
 import { Pill } from "./ui/pill";
@@ -8,7 +10,6 @@ import { gallery } from "@/data/media";
 import { news } from "@/data/news";
 import { teams } from "@/data/teams";
 import Carousel from "@/components/ui/carousel";
-
 import Image from "next/image";
 
 export default function Landing() {
@@ -17,89 +18,157 @@ export default function Landing() {
     { src: "/data/slide-img2.jpg", alt: "Stars Basketball 2" },
     { src: "/data/slide-img3.jpg", alt: "Stars Basketball 3" },
     { src: "/data/slide-img4.jpg", alt: "Stars Basketball 4" },
-
   ];
+  const stats = [
+  { icon: <Users className="h-5 w-5" />, label: "Aktive Mitglieder", value: "120+" },
+  { icon: <Award className="h-5 w-5" />, label: "Teams", value: "8" },
+  { icon: <Trophy className="h-5 w-5" />, label: "Turniersiege", value: "15+" },
+  { icon: <HeartHandshake className="h-5 w-5" />, label: "Coaches", value: "4+" },
+];
+
+
   return (
     <div id="home">
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-200">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -left-10 top-10 h-64 w-64 rounded-full bg-gradient-to-br from-orange-400/10 to-red-400/10 blur-3xl" />
-          <div className="absolute right-0 top-40 h-72 w-72 rounded-full bg-gradient-to-br from-fuchsia-400/10 to-indigo-400/10 blur-3xl" />
-          <div className="absolute -bottom-10 left-1/3 h-80 w-80 rounded-full bg-gradient-to-tr from-sky-400/10 to-blue-500/10 blur-3xl" />
-        </div>
-        <Container className="grid items-center gap-16 py-14 md:grid-cols-2 md:py-20">
-          <div className="relative">
-            <Carousel slides={slides} 
-              className="aspect-[21/9] lg:aspect-[21/9] rounded-[2rem] border border-slate-200 shadow-xl"
-            />
+        {/* Hero (mobil-first, responsive optimiert) */}
+        <section className="relative overflow-hidden border-b border-slate-200">
+          {/* Deko-Background (dezent; Größe skaliert mit Viewport) */}
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute -left-10 top-10 h-48 w-48 rounded-full bg-gradient-to-br from-orange-400/10 to-red-400/10 blur-3xl md:h-64 md:w-64" />
+            <div className="absolute right-0 top-40 h-56 w-56 rounded-full bg-gradient-to-br from-fuchsia-400/10 to-indigo-400/10 blur-3xl md:h-72 md:w-72" />
+            <div className="absolute -bottom-10 left-1/3 h-56 w-56 rounded-full bg-gradient-to-tr from-sky-400/10 to-blue-500/10 blur-3xl md:h-80 md:w-80" />
           </div>
-          <div>
-            <Pill><CalendarDays size={16} className="mr-2" /> Nächstes Spiel · Samstag 19:30</Pill>
-            <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight md:text-6xl">
-              Leidenschaft. Teamgeist. <br />
-              <span className="text-orange-500">Stars Basketball.</span>
-            </h1>
-            <p className="mt-4 max-w-xl text-slate-700 md:text-lg">
-              Nachwuchsförderung und Basketball – von U10 bis U19, Girls-Only-Programme und Camps. Komm ins Team!
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button href="/news" className="bg-orange-500"><Newspaper size={30} /> Aktuelle News</Button>
-              {/* Sekundär-Button in Blau */}
-              <Button
-                href="/media"
-                variant="ghost"
-                className="text-sky-600 hover:text-sky-700 hover:bg-sky-50"
-              >
-                <Play size={30} /> Highlights ansehen
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
 
-      {/* Highlights 
-      <section className="border-b border-slate-200">
-        <Container className="grid gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
-          <Card className="hover:border-sky-200 transition-colors">
-            <div className="flex items-center gap-3">
-              <Award className="text-sky-600" />
-              <div>
-                <p className="text-lg font-semibold">Programm</p>
-                <p className="text-md text-slate-600">U10–U19 & Girls</p>
+          {/* GRID-LAYOUT
+              - mobil: 1 Spalte (Text → Foto → CTAs/KPIs)
+              - ab md (iPad/kleine Laptops): 2 Spalten
+              - Gaps mobil kompakt, wachsen mit Breakpoints  */}
+          <Container className="grid items-start gap-6 py-8 sm:gap-8 sm:py-10 md:grid-cols-2 md:gap-x-12 md:gap-y-0 md:py-14 lg:gap-x-16 lg:py-20">
+
+            {/* RECHTE SPALTE (ab md): Textblock (Pill + H1 + Copy) 
+                - mobil zuerst (order-1), ab md rechts (order-2 + col-start-2) */}
+            <div className="order-1 md:order-2 md:col-start-2 md:row-start-1">
+              {/* Pill skaliert automatisch klein → normal */}
+              <Pill>
+                <CalendarDays className="mr-1 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                Nächstes Spiel · Samstag 19:30
+              </Pill>
+
+              {/* Headline
+                  - mobil: groß, aber nicht zu wuchtig (text-5xl)
+                  - iPad (md): kompakter (text-6xl, engeres leading)
+                  - Desktop (lg): richtig groß */}
+              <h1 className="mt-3 font-black tracking-tight text-5xl leading-tight sm:text-6xl md:text-6xl md:leading-[1.05] lg:text-7xl">
+                Leidenschaft. Teamgeist. <br />
+                <span className="text-orange-500">Stars Basketball.</span>
+              </h1>
+
+              {/* Untertext: Lesbarkeit ab md leicht größer */}
+              <p className="mt-3 max-w-xl text-slate-700 sm:text-base md:text-lg">
+                Nachwuchsförderung und Basketball – von U10 bis U19, Girls-Only-Programme und Camps. Komm ins Team!
+              </p>
+
+              {/* CTAs + KPI-Karten (DESKTOP/TABLET-Version)
+                  - sitzen direkt unter dem Text in derselben Spalte/Zeile
+                  - mobil ausgeblendet (es gibt unten eine mobile Variante) */}
+              <div className="mt-4 hidden md:block">
+                {/* CTAs: mobil-first Spacing, iPad kompakter, Desktop luftiger */}
+                <div className="flex flex-wrap gap-2 md:gap-3">
+                  <Button href="/news" className="bg-orange-500">
+                    <Newspaper size={22} className="mr-2" />
+                    Aktuelle News
+                  </Button>
+                  <Button
+                    href="/media"
+                    variant="ghost"
+                    className="text-sky-600 hover:text-sky-700 hover:bg-sky-50"
+                  >
+                    <Play size={22} className="mr-2" />
+                    Highlights ansehen
+                  </Button>
+                </div>
+
+                {/* KPI-Grid
+                    - md (iPad): 3 Spalten → harmonischer Zeilenumbruch
+                    - lg (Laptop/Desktop): 4 Spalten
+                    - mt-3 (bewusst klein), damit wenig Luft zwischen CTAs & KPIs */}
+                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
+                  {stats.map((s) => (
+                    <div
+                      key={s.label}
+                      className="rounded-2xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm backdrop-blur"
+                    >
+                      <div className="mx-auto mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-sky-50 text-sky-700">
+                        {s.icon}
+                      </div>
+                      <div className="text-lg font-bold">{s.value}</div>
+                      <div className="text-xs text-slate-500">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </Card>
-          <Card className="hover:border-sky-200 transition-colors">
-            <div className="flex items-center gap-3">
-              <Users className="text-sky-600" />
-              <div>
-                <p className="text-lg font-semibold">4+ Coaches</p>
-                <p className="text-md text-slate-600">Professionelle Trainer*innen</p>
+
+            {/* LINKE SPALTE (ab md): Carousel
+                - mobil nach dem Text (order-2)
+                - iPad: 4:3 Aspect & höhere fixe Höhe (füllt die Spalte)
+                - Laptop/Desktop: kinoartigeres Seitenverhältnis */}
+            <div className="relative order-2 md:order-1 md:col-start-1 md:row-start-1">
+              <Carousel
+                slides={slides}
+                className="
+                  rounded-xl md:rounded-[2rem]
+                  /* Handy: breit, aber nicht zu hoch */
+                  aspect-[16/9] h-56
+                  /* kleine Phones etwas höher */
+                  sm:h-64
+                  /* iPad/kleine Laptops: natürlicher 4:3-Look + mehr Höhe */
+                  md:aspect-[4/3] md:h-[28rem]
+                  /* Laptops/Desktops: panoramaartig + großzügige Höhe */
+                  lg:aspect-[21/8] lg:h-[30rem]
+                  xl:h-[34rem]
+                "
+              />
+            </div>
+
+            {/* CTAs + KPI-Karten (MOBILE-Version)
+                - erscheinen NACH dem Foto
+                - eigenständiges Spacing, kompakt gehalten */}
+            <div className="order-3 md:hidden">
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Button href="/news" className="bg-orange-500">
+                  <Newspaper size={20} className="mr-2" />
+                  Aktuelle News
+                </Button>
+                <Button
+                  href="/media"
+                  variant="ghost"
+                  className="text-sky-600 hover:text-sky-700 hover:bg-sky-50"
+                >
+                  <Play size={20} className="mr-2" />
+                  Highlights ansehen
+                </Button>
+              </div>
+
+              {/* 2 Spalten auf Handy, bleibt luftig; kleine Top-Margin */}
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {stats.map((s) => (
+                  <div
+                    key={s.label}
+                    className="rounded-2xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm backdrop-blur"
+                  >
+                    <div className="mx-auto mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-sky-50 text-sky-700">
+                      {s.icon}
+                    </div>
+                    <div className="text-lg font-bold">{s.value}</div>
+                    <div className="text-xs text-slate-500">{s.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
-          </Card>
-          <Card className="hover:border-sky-200 transition-colors">
-            <div className="flex items-center gap-3">
-              <Images className="text-sky-600" />
-              <div>
-                <p className="text-lg font-semibold">Media</p>
-                <p className="text-md text-slate-600">Fotos & Videos</p>
-              </div>
-            </div>
-          </Card>
-          <Card className="hover:border-sky-200 transition-colors">
-            <div className="flex items-center gap-3">
-              <CalendarDays className="text-sky-600" />
-              <div>
-                <p className="text-lg font-semibold">Trainingszeiten</p>
-                <p className="text-md text-slate-600">Alle Teams</p>
-              </div>
-            </div>
-          </Card>
-        </Container>
-      </section>
-      */}
+
+          </Container>
+        </section>
+
       {/* News */}
       <section className="border-b border-slate-200 py-6 md:py-6">
         <Container>
