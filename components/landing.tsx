@@ -63,14 +63,14 @@ export default function Landing() {
               </h1>
 
               {/* Untertext: Lesbarkeit ab md leicht größer */}
-              <p className="mt-3 max-w-xl text-slate-700 sm:text-base md:text-lg">
+              <p className="mt-4 max-w-xl text-slate-700 sm:text-base md:text-lg">
                 Nachwuchsförderung und Basketball – von U10 bis U19, Girls-Only-Programme und Camps. Komm ins Team!
               </p>
 
               {/* CTAs + KPI-Karten (DESKTOP/TABLET-Version)
                   - sitzen direkt unter dem Text in derselben Spalte/Zeile
                   - mobil ausgeblendet (es gibt unten eine mobile Variante) */}
-              <div className="mt-4 hidden md:block">
+              <div className="mt-8 hidden md:block">
                 {/* CTAs: mobil-first Spacing, iPad kompakter, Desktop luftiger */}
                 <div className="flex flex-wrap gap-2 md:gap-3">
                   <Button href="/news" className="bg-orange-500">
@@ -87,24 +87,21 @@ export default function Landing() {
                   </Button>
                 </div>
 
-                {/* KPI-Grid
-                    - md (iPad): 3 Spalten → harmonischer Zeilenumbruch
-                    - lg (Laptop/Desktop): 4 Spalten
-                    - mt-3 (bewusst klein), damit wenig Luft zwischen CTAs & KPIs */}
-                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
-                  {stats.map((s) => (
-                    <div
-                      key={s.label}
-                      className="rounded-2xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm backdrop-blur"
-                    >
-                      <div className="mx-auto mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-sky-50 text-sky-700">
-                        {s.icon}
+                {/* KPI-Grid - lg (iPad, Laptop/Desktop): 4 Spalten*/}
+                  <div className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-4">
+                    {stats.map((s) => (
+                      <div
+                        key={s.label}
+                        className="rounded-2xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm backdrop-blur"
+                      >
+                        <div className="mx-auto mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-sky-50 text-sky-700">
+                          {s.icon}
+                        </div>
+                        <div className="text-lg font-bold">{s.value}</div>
+                        <div className="text-xs text-slate-500">{s.label}</div>
                       </div>
-                      <div className="text-lg font-bold">{s.value}</div>
-                      <div className="text-xs text-slate-500">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
               </div>
             </div>
 
