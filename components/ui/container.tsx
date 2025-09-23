@@ -7,8 +7,10 @@ export function Container({
   children: React.ReactNode;
   className?: string;
 }) {
+  // Projektweit einheitliche Container-Maße, damit Header, Footer und Inhalte
+  // bündig abschließen und der Header beim Routenwechsel nicht "wandert".
   return (
-    <div className={`mx-auto w-full max-w-[1600px] px-6 ${className}`}>
+    <div className={`mx-auto w-full max-w-7xl px-4 md:px-6 ${className}`}>
       {children}
     </div>
   );
