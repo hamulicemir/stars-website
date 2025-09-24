@@ -9,10 +9,12 @@ import { Card } from "./ui/card";
 import { gallery } from "@/data/media";
 import { news } from "@/data/news";
 import { teams } from "@/data/teams";
+import Image from "next/image";
 import Carousel from "@/components/ui/carousel";
 import HighlightVideo from "@/components/highlight-video";
 import SponsorBanner from "@/components/sponsor-banner";
-import Image from "next/image";
+import NextStarsGameGlobal from "@/components/next-stars-game-global";
+
 
 export default function Landing() {
     const slides = [
