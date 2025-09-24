@@ -3,9 +3,19 @@ import { Container } from "./ui/container";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 
+import SponsorBanner from "@/components/sponsor-banner";
+
+
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-slate-200 py-10">
+      {/* Sponsoring */}
+      <SponsorBanner
+        href="https://www.ambicon.at/"
+        src="/data/banner.png"
+        alt="Unser Hauptsponsor"
+      />
       <Container className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">

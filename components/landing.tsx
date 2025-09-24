@@ -10,6 +10,8 @@ import { gallery } from "@/data/media";
 import { news } from "@/data/news";
 import { teams } from "@/data/teams";
 import Carousel from "@/components/ui/carousel";
+import HighlightVideo from "@/components/highlight-video";
+import SponsorBanner from "@/components/sponsor-banner";
 import Image from "next/image";
 
 export default function Landing() {
@@ -208,6 +210,14 @@ export default function Landing() {
           </div>
         </Container>
       </section>
+      
+      {/* Highlight-Video (YouTube) */}
+      <HighlightVideo
+        youtubeId="Ef77kl68UUw"           // z.B. "dQw4w9WgXcQ"
+        title="Stars Season Highlights"
+        poster="/media/highlights-teaser.jpg"  // optional
+      />
+
 
       {/* Teams */}
       <section className="border-b border-slate-200 py-12 md:py-16">
