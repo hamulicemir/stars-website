@@ -73,9 +73,9 @@ export default function HighlightVideo({ youtubeId, title = "Highlights", poster
   const { id, thumb } = useYouTubeThumb(youtubeId, poster);
 
   return (
-    <section className="border-b border-slate-200 py-10 md:py-12">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="relative overflow-hidden rounded-2xl">
+    <section className="border-b border-slate-200 py-12 md:py-16">
+      <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-[2000px] overflow-hidden rounded-2xl">
           <button
             type="button"
             onClick={() => setOpen(true)}

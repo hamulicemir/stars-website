@@ -1,29 +1,66 @@
-import { teams } from "@/data/teams";
 import { notFound } from "next/navigation";
+import { Container } from "@/components/ui/container";
 
-export default function TeamDetail({ params }: { params: { id: string } }) {
-  const team = teams.find(t => t.id === params.id);
+import TrainingTimes from "@/components/teams/TrainingTimes";
+import Schedule from "@/components/teams/Schedule";
+import Results from "@/components/teams/Results";
+import Standings from "@/components/teams/Standings";
+
+import {
+  fetchTeamById,
+  fetchTrainingTimes,
+  fetchSchedule,
+  fetchResults,
+  fetchStandings,
+} from "@/lib/teams";
+
+export default async function TeamDetail({ params }: { params: { id: string } }) {
+  const team = await fetchTeamById(params.id);
   if (!team) return notFound();
+
+  const [slots, schedule, results, standings] = await Promise.all([
+    fetchTrainingTimes(team.id),
+    fetchSchedule(team.id),
+    fetchResults(team.id),
+    fetchStandings(team.id),
+  ]);
+
   return (
-    <div className="container-7xl py-10">
-      <h1 className="text-3xl font-bold">{team.name}</h1>
-      <p className="mt-2 text-slate-700">Coach: {team.coach}</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <div className="card">
-          <h2 className="text-lg font-semibold">Trainingszeiten</h2>
-          <ul className="mt-3 text-sm text-slate-700 space-y-2">
-            <li>Di · 17:00–18:30 · Musterhalle 1</li>
-            <li>Fr · 16:30–18:00 · Musterhalle 2</li>
-          </ul>
-        </div>
-        <div className="card">
-          <h2 className="text-lg font-semibold">Spielplan</h2>
-          <ul className="mt-3 text-sm text-slate-700 space-y-2">
-            <li>Sa 19:30 vs. City Lions (H)</li>
-            <li>So 17:00 @ Blue Eagles (A)</li>
-          </ul>
-        </div>
-      </div>
+    <div className="bg-sky-100">
+      <section className="border-b border-slate-200">
+        <Container className="py-8 md:py-10">
+          <h1 className="text-3xl font-bold tracking-tight">{team.name}</h1>
+          <p className="mt-1 text-slate-700">Coach: {team.coach}</p>
+        </Container>
+      </section>
+
+      <section className="border-b border-slate-200">
+        <Container className="py-8">
+          <h2 className="text-xl font-semibold">Trainingszeiten</h2>
+          <TrainingTimes slots={slots} />
+        </Container>
+      </section>
+
+      <section className="border-b border-slate-200">
+        <Container className="py-8">
+          <h2 className="text-xl font-semibold">Spieltermine</h2>
+          <Schedule games={schedule} />
+        </Container>
+      </section>
+
+      <section className="border-b border-slate-200">
+        <Container className="py-8">
+          <h2 className="text-xl font-semibold">Ergebnisse</h2>
+          <Results games={results} />
+        </Container>
+      </section>
+
+      <section className="border-b border-slate-200">
+        <Container className="py-8">
+          <h2 className="text-xl font-semibold">Tabelle</h2>
+          <Standings rows={standings} />
+        </Container>
+      </section>
     </div>
   );
 }

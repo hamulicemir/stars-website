@@ -13,7 +13,7 @@ export default function SponsorBanner({
   alt = "Sponsor",
 }: Props) {
   return (
-    <section className="border-b border-slate-200 py-8 md:py-10">
+    <section className="border-b border-slate-200 py-8 md:py-10 mb-5">
       <h1 className="mb-4 text-center text-2xl font-semibold md:text-4xl">
         Vielen Dank an unseren Sponsor
       </h1>
