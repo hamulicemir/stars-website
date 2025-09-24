@@ -1,19 +1,40 @@
 "use client";
-
 import * as React from "react";
 import { Container } from "./ui/container";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
+// 🧭 Navigationsstruktur mit Dropdown-Unterpunkten
 const nav = [
+  { label: "HOME", href: "/" },
   { label: "NEWS", href: "/news" },
-  { label: "VEREIN", href: "/verein" },
-  { label: "TEAMS", href: "/teams" },
+  {
+    label: "VEREIN",
+    items: [
+      { label: "Über uns", href: "/verein/ueber-uns" },
+      { label: "Vereinsleitung", href: "/verein/vereinsleitung" },
+      { label: "Trainer", href: "/verein/trainer" },
+    ],
+  },
+  {
+    label: "TEAMS",
+    items: [
+      { label: "U10", href: "/teams/u10" },
+      { label: "U12", href: "/teams/u12" },
+      { label: "U14", href: "/teams/u14" },
+      { label: "Mädchen", href: "/teams/maedchen" },
+      { label: "U19", href: "/teams/u19" },
+      { label: "Stars Weiß U16", href: "/teams/stars-weiss-u16" },
+      { label: "Minisportschule", href: "/teams/minisportschule" },
+    ],
+  },
   { label: "MEDIA", href: "/media" },
-  { label: "SPONSOR", href: "/sponsors" },
+  { label: "SPONSORING", href: "/sponsoring" },
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = React.useState(false);
+  // Mobile-Accordions Zustand pro Dropdown
+  const [mobileOpen, setMobileOpen] = React.useState<{ [key: string]: boolean }>({});
 
   // Body-Scroll sperren, solange das Panel offen ist
   React.useEffect(() => {
@@ -32,46 +53,73 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-sky-100/90 backdrop-blur">
       {/* ─────────────────────────────────────────────────────────
           STAGEs (mobil-first)
-          - <1280px (Mobile/iPad/kleine Laptops): Burger sichtbar, CTA NUR im Panel
-          - ≥1280px (XL, Desktop/Laptops): Desktop-Nav sichtbar, Burger weg, CTA oben im Header
+          - <1280px: Burger sichtbar, CTA NUR im Panel
+          - ≥1280px: Desktop-Nav sichtbar, Burger weg, CTA oben im Header
          ───────────────────────────────────────────────────────── */}
       <Container className="flex h-14 items-center justify-between sm:h-16 md:h-20">
-        {/* Logo + Brand (Brand-Text erst ab xl einblenden) */}
+        {/* Logo + Brand */}
         <a href="/" className="flex items-center gap-3 text-gray-900">
           <img
             src="/data/logo.png"
             alt="Stars Basketball Logo"
             className="h-10 w-auto object-contain sm:h-12 md:h-14"
           />
-          <span className="hidden xl:inline text-xl font-extrabold tracking-tight">
+          <span className="hidden text-xl font-extrabold tracking-tight xl:inline">
             STARS BASKETBALL
           </span>
         </a>
 
-        {/* Desktop-Navigation: NUR ab XL → bei 1440 sichtbar */}
-        <nav className="hidden gap-2 xl:flex">
-          {nav.map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className="rounded-md px-4 py-2 text-sm font-bold text-slate-600 transition-colors hover:bg-sky-600 hover:text-white"
-            >
-              {n.label}
-            </a>
-          ))}
+        {/* Desktop-Navigation (ab XL) */}
+        <nav className="hidden gap-1 xl:flex">
+          {nav.map((item) =>
+            item.items ? (
+              <div key={item.label} className="relative group">
+                <button
+                  type="button"
+                  className="flex items-center gap-1 rounded-md px-4 py-2 text-sm font-bold text-slate-700 transition-colors hover:bg-sky-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                >
+                  {item.label}
+                  <ChevronDown className="h-4 w-4 opacity-80" />
+                </button>
+                {/* Dropdown */}
+                <div
+                  role="menu"
+                  className="invisible absolute left-0 top-full z-50 mt-1 w-56 origin-top rounded-xl border border-slate-200 bg-white p-1 opacity-0 shadow-lg transition-all duration-150 ease-out group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                >
+                  {item.items.map((sub) => (
+                    <a
+                      key={sub.href}
+                      href={sub.href}
+                      className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-sky-50 hover:text-sky-900"
+                    >
+                      {sub.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a
+                key={item.href}
+                href={(item as any).href}
+                className="rounded-md px-4 py-2 text-sm font-bold text-slate-700 transition-colors hover:bg-sky-600 hover:text-white"
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </nav>
 
-        {/* Rechts: CTA oben nur ab XL (wenn kein Burger existiert) + Burger bis <XL */}
+        {/* Rechts: CTA (nur Desktop) + Burger (mobil) */}
         <div className="flex items-center gap-2">
-          {/* CTA oben im Header NUR ab XL (Desktop) */}
           <a
             href="/mitglied"
-            className="hidden xl:inline-flex rounded-md bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600"
+            className="hidden rounded-md bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600 xl:inline-flex"
           >
             Mitglied werden
           </a>
-
-          {/* Burger-Button: bis <XL sichtbar, ab XL ausgeblendet */}
+          {/* Burger */}
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-sky-200 xl:hidden"
@@ -104,16 +152,8 @@ export function SiteHeader() {
       >
         {/* Panel-Header */}
         <Container className="flex h-14 items-center justify-between sm:h-16">
-          <a
-            href="/"
-            className="flex items-center gap-3 text-gray-900"
-            onClick={() => setOpen(false)}
-          >
-            <img
-              src="/data/logo.png"
-              alt="Stars Basketball Logo"
-              className="h-10 w-auto object-contain sm:h-12"
-            />
+          <a href="/" className="flex items-center gap-3 text-gray-900" onClick={() => setOpen(false)}>
+            <img src="/data/logo.png" alt="Stars Basketball Logo" className="h-10 w-auto object-contain sm:h-12" />
           </a>
           <button
             type="button"
@@ -128,15 +168,55 @@ export function SiteHeader() {
         {/* Links + CTA (orange) IM Panel für <XL */}
         <nav className="px-4 pb-4">
           <ul className="space-y-1">
-            {nav.map((n) => (
-              <li key={n.href}>
-                <a
-                  href={n.href}
-                  className="block rounded-xl px-4 py-3 text-base font-semibold text-slate-700 hover:bg-sky-100"
-                  onClick={() => setOpen(false)}
-                >
-                  {n.label}
-                </a>
+            {nav.map((item) => (
+              <li key={item.label}>
+                {item.items ? (
+                  <div className="rounded-xl bg-white/70 p-1">
+                    <button
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-base font-semibold text-slate-800 hover:bg-sky-100"
+                      onClick={() =>
+                        setMobileOpen((s) => ({ ...s, [item.label]: !s[item.label] }))
+                      }
+                      aria-expanded={!!mobileOpen[item.label]}
+                      aria-controls={`section-${item.label}`}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        className={`h-5 w-5 transition-transform ${
+                          mobileOpen[item.label] ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </button>
+                    <div
+                      id={`section-${item.label}`}
+                      className={`grid overflow-hidden transition-[grid-template-rows] duration-200 ease-out ${
+                        mobileOpen[item.label] ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="min-h-0">
+                        {item.items.map((sub) => (
+                          <a
+                            key={sub.href}
+                            href={sub.href}
+                            className="block rounded-lg px-4 py-2 text-slate-700 hover:bg-sky-50"
+                            onClick={() => setOpen(false)}
+                          >
+                            {sub.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <a
+                    href={(item as any).href}
+                    className="block rounded-xl px-4 py-3 text-base font-semibold text-slate-700 hover:bg-sky-100"
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
@@ -156,4 +236,3 @@ export function SiteHeader() {
     </header>
   );
 }
-
