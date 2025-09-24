@@ -9,7 +9,7 @@ import SponsorBanner from "@/components/sponsor-banner";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-200 py-10">
+    <footer className="mt-auto border-t border-slate-200 py-10">
       {/* Sponsoring */}
       <SponsorBanner
         href="https://www.ambicon.at/"
