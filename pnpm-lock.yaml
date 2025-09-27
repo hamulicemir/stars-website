@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       framer-motion:
         specifier: ^12.23.18
         version: 12.23.18(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -20,6 +23,9 @@ importers:
       next:
         specifier: ^15.5.3
         version: 15.5.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      next-auth:
+        specifier: ^4.24.11
+        version: 4.24.11(next@15.5.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       pg:
         specifier: ^8.16.3
         version: 8.16.3
@@ -72,6 +78,10 @@ packages:
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
+
+  '@babel/runtime@7.28.4':
+    resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
+    engines: {node: '>=6.9.0'}
 
   '@emnapi/runtime@1.5.0':
     resolution: {integrity: sha512-97/BJ3iXHww3djw6hYIfErCZFee7qCtrneuLa20UXFCOTCfBM2cvQHjWJ2EG0s0MtdNwInarqCTz35i4wWXHsQ==}
@@ -438,6 +448,9 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
+  '@panva/hkdf@1.2.1':
+    resolution: {integrity: sha512-6oclG6Y3PiDFcoyk8srjLfVKyMfVCKJ27JwNPViuXziFpmdz+MZnZN/aKY0JGXgYuO/VghU0jcOAZgWXZ1Dmrw==}
+
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
@@ -569,6 +582,10 @@ packages:
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
 
+  clsx@2.1.1:
+    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
+    engines: {node: '>=6'}
+
   color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
     engines: {node: '>=7.0.0'}
@@ -579,6 +596,10 @@ packages:
   commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
+
+  cookie@0.7.2:
+    resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
+    engines: {node: '>= 0.6'}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -772,6 +793,9 @@ packages:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
     hasBin: true
 
+  jose@4.15.9:
+    resolution: {integrity: sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==}
+
   kind-of@2.0.1:
     resolution: {integrity: sha512-0u8i1NZ/mg0b+W3MGGw5I7+6Eib2nx72S/QvXa0hYjEkjTknYmEYQJwGu3mLC0BrhtJjtQafTkyRUQ75Kx0LVg==}
     engines: {node: '>=0.10.0'}
@@ -805,6 +829,10 @@ packages:
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
+
+  lru-cache@6.0.0:
+    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
+    engines: {node: '>=10'}
 
   lucide-react@0.544.0:
     resolution: {integrity: sha512-t5tS44bqd825zAW45UQxpG2CvcC4urOwn2TrwSH8u+MjeE+1NnWl6QqeQ/6NdjMqdOygyiT9p3Ev0p1NJykxjw==}
@@ -853,6 +881,20 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  next-auth@4.24.11:
+    resolution: {integrity: sha512-pCFXzIDQX7xmHFs4KVH4luCjaCbuPRtZ9oBUjUhOk84mZ9WVPf94n87TxYI4rSRf9HmfHEF8Yep3JrYDVOo3Cw==}
+    peerDependencies:
+      '@auth/core': 0.34.2
+      next: ^12.2.5 || ^13 || ^14 || ^15
+      nodemailer: ^6.6.5
+      react: ^17.0.2 || ^18 || ^19
+      react-dom: ^17.0.2 || ^18 || ^19
+    peerDependenciesMeta:
+      '@auth/core':
+        optional: true
+      nodemailer:
+        optional: true
+
   next@15.5.3:
     resolution: {integrity: sha512-r/liNAx16SQj4D+XH/oI1dlpv9tdKJ6cONYPwwcCC46f2NjpaRWY+EKCzULfgQYV6YKXjHBchff2IZBSlZmJNw==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
@@ -885,9 +927,16 @@ packages:
     resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
 
+  oauth@0.9.15:
+    resolution: {integrity: sha512-a5ERWK1kh38ExDEfoO6qUHJb32rd7aYmPHuyCu3Fta/cnICvYmgd2uhuKXvPD+PXB+gCEYYEaQdIRAjCOwAKNA==}
+
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+
+  object-hash@2.2.0:
+    resolution: {integrity: sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==}
+    engines: {node: '>= 6'}
 
   object-hash@3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
@@ -912,6 +961,13 @@ packages:
   object.reduce@0.1.7:
     resolution: {integrity: sha512-5PMRmWAfIbCJavx9xETLSjr0IvHHDOjhW9jnHkOmnTC0Q4d9tWM5GjBAPS+J4yLk2Q+ql/XJBBbBOp2xTzDhDg==}
     engines: {node: '>=0.10.0'}
+
+  oidc-token-hash@5.1.1:
+    resolution: {integrity: sha512-D7EmwxJV6DsEB6vOFLrBM2OzsVgQzgPWyHlV2OOAVj772n+WTXpudC9e9u5BVKQnYwaD30Ivhi9b+4UeBcGu9g==}
+    engines: {node: ^10.13.0 || >=12.0.0}
+
+  openid-client@5.7.1:
+    resolution: {integrity: sha512-jDBPgSVfTnkIh71Hg9pRvtJc6wTwqjRkN88+gCFtYWrlP4Yx2Dsrow8uPi3qLr/aeymPF3o2+dS+wOpglK04ew==}
 
   optimist@0.3.7:
     resolution: {integrity: sha512-TCx0dXQzVtSCg2OgY/bO9hjM9cV4XYx09TVK+s3+FhkjT6LovsLe+pPMzpWf+6yXK/hUizs2gUoTw3jHM0VaTQ==}
@@ -1039,6 +1095,17 @@ packages:
   postgres-interval@1.2.0:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
+
+  preact-render-to-string@5.2.6:
+    resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
+    peerDependencies:
+      preact: '>=10'
+
+  preact@10.27.2:
+    resolution: {integrity: sha512-5SYSgFKSyhCbk6SrXyMpqjb5+MQBgfvEKE/OC+PujcY34sOpqtr+0AZQtPYx5IA6VxynQ7rUPCtKzyovpj9Bpg==}
+
+  pretty-format@3.8.0:
+    resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -1208,6 +1275,10 @@ packages:
     resolution: {integrity: sha512-MQui5t13wIAkllcVSR/19WTvLxfJRKHwlLmBin3iqJ1F1kFMZtValrOwwn0Ez43bOQwCNhzJAjOoX74UkVI+Xg==}
     engines: {node: '>=0.10.0'}
 
+  uuid@8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+
   which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
     engines: {node: '>= 8'}
@@ -1233,6 +1304,9 @@ packages:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
 
+  yallist@4.0.0:
+    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
+
   yaml@2.8.1:
     resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
     engines: {node: '>= 14.6'}
@@ -1241,6 +1315,8 @@ packages:
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
+
+  '@babel/runtime@7.28.4': {}
 
   '@emnapi/runtime@1.5.0':
     dependencies:
@@ -1475,6 +1551,8 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
+  '@panva/hkdf@1.2.1': {}
+
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
@@ -1604,6 +1682,8 @@ snapshots:
 
   client-only@0.0.1: {}
 
+  clsx@2.1.1: {}
+
   color-convert@2.0.1:
     dependencies:
       color-name: 1.1.4
@@ -1611,6 +1691,8 @@ snapshots:
   color-name@1.1.4: {}
 
   commander@4.1.1: {}
+
+  cookie@0.7.2: {}
 
   cross-spawn@7.0.6:
     dependencies:
@@ -1796,6 +1878,8 @@ snapshots:
 
   jiti@1.21.7: {}
 
+  jose@4.15.9: {}
+
   kind-of@2.0.1:
     dependencies:
       is-buffer: 1.1.6
@@ -1817,6 +1901,10 @@ snapshots:
   longest@1.0.1: {}
 
   lru-cache@10.4.3: {}
+
+  lru-cache@6.0.0:
+    dependencies:
+      yallist: 4.0.0
 
   lucide-react@0.544.0(react@19.1.1):
     dependencies:
@@ -1861,6 +1949,21 @@ snapshots:
 
   nanoid@3.3.11: {}
 
+  next-auth@4.24.11(next@15.5.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
+    dependencies:
+      '@babel/runtime': 7.28.4
+      '@panva/hkdf': 1.2.1
+      cookie: 0.7.2
+      jose: 4.15.9
+      next: 15.5.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      oauth: 0.9.15
+      openid-client: 5.7.1
+      preact: 10.27.2
+      preact-render-to-string: 5.2.6(preact@10.27.2)
+      react: 19.1.1
+      react-dom: 19.1.1(react@19.1.1)
+      uuid: 8.3.2
+
   next@15.5.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
       '@next/env': 15.5.3
@@ -1890,7 +1993,11 @@ snapshots:
 
   normalize-range@0.1.2: {}
 
+  oauth@0.9.15: {}
+
   object-assign@4.1.1: {}
+
+  object-hash@2.2.0: {}
 
   object-hash@3.0.0: {}
 
@@ -1918,6 +2025,15 @@ snapshots:
   object.reduce@0.1.7:
     dependencies:
       for-own: 0.1.5
+
+  oidc-token-hash@5.1.1: {}
+
+  openid-client@5.7.1:
+    dependencies:
+      jose: 4.15.9
+      lru-cache: 6.0.0
+      object-hash: 2.2.0
+      oidc-token-hash: 5.1.1
 
   optimist@0.3.7:
     dependencies:
@@ -2029,6 +2145,15 @@ snapshots:
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+
+  preact-render-to-string@5.2.6(preact@10.27.2):
+    dependencies:
+      preact: 10.27.2
+      pretty-format: 3.8.0
+
+  preact@10.27.2: {}
+
+  pretty-format@3.8.0: {}
 
   queue-microtask@1.2.3: {}
 
@@ -2248,6 +2373,8 @@ snapshots:
       striptags: 2.2.1
       word-wrap: 1.2.5
 
+  uuid@8.3.2: {}
+
   which@2.0.2:
     dependencies:
       isexe: 2.0.0
@@ -2269,5 +2396,7 @@ snapshots:
       strip-ansi: 7.1.2
 
   xtend@4.0.2: {}
+
+  yallist@4.0.0: {}
 
   yaml@2.8.1: {}
