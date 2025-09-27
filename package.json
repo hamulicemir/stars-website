@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "framer-motion": "^12.23.18",
     "import": "^0.0.6",
     "lucide-react": "latest",
